@@ -1,0 +1,52 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "ValidatedTourStartDate&Flowchart_1",
+        "FilteredBookings&Flowchart_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "InputValidation.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "DateTime&Sequence_1",
+        "TourStartDate&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "GenerateTourList.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "FoundCustomerRow&Sequence_4",
+        "CurrBookingRow&Sequence_4",
+        "FoundCustomerDT&Sequence_4",
+        "TourIds&Sequence_1",
+        "GroupedTours&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "In_CustomersData",
+        "Out_TourDataTable",
+        "In_BookingByStartDate"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}
