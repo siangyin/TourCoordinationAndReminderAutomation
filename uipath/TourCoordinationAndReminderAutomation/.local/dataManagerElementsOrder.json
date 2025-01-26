@@ -12,10 +12,18 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "TourListDataTable&Flowchart_1",
+        "TourIDs&Flowchart_1",
+        "CustomersDataTable&Flowchart_1",
+        "ToursDataTable&Flowchart_1",
+        "hasCustomerAndTourFiles&Flowchart_1",
         "ValidatedTourStartDate&Flowchart_1",
         "FilteredBookings&Flowchart_1"
       ],
-      "ArgumentsSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "In_TourListData",
+        "In_TourIDs"
+      ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
@@ -34,6 +42,11 @@
       "Path": "GenerateTourList.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "TotalBookings&Sequence_1",
+        "SuccessfullyMerged&Sequence_1",
+        "CustomerData&Sequence_1",
+        "CurrBookingRow&Sequence_7",
+        "MergedRow&Sequence_7",
         "FoundCustomerRow&Sequence_4",
         "CurrBookingRow&Sequence_4",
         "FoundCustomerDT&Sequence_4",
@@ -41,9 +54,49 @@
         "GroupedTours&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "Out_TourIDs",
+        "Out_TourListDataTable",
         "In_CustomersData",
         "Out_TourDataTable",
         "In_BookingByStartDate"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "GeneratePDF.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "RefinedTourData&Sequence_1",
+        "FilteredTourData&Sequence_1",
+        "CustomerRows&Sequence_1",
+        "CurrentRowIndex&Sequence_1",
+        "FormattedStartDate&Sequence_1",
+        "FormattedEndDate&Sequence_1",
+        "In_TemplateFilePath&Sequence_3"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "In_TourDataTable",
+        "In_TourID",
+        "In_TemplateFilePath",
+        "In_OutputFolderPath",
+        "Out_PdfFilePath"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "PdfAndEmail.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "OutputFolder&Sequence_1",
+        "CurrentTourIndex&Sequence_1",
+        "PdfTemplateFilePath&Sequence_1",
+        "PdfFilePath&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "In_TourListDataTable",
+        "In_TourIDs"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
