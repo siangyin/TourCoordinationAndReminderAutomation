@@ -4,7 +4,7 @@
     <x:Property Name="In_TourID" Type="InArgument(x:String)" />
     <x:Property Name="In_TemplateFilePath" Type="InArgument(x:String)" />
     <x:Property Name="In_OutputFolderPath" Type="InArgument(x:String)" />
-    <x:Property Name="Out_PdfFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="Out_PdfFilePath" Type="OutArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -46,6 +46,10 @@
       <x:String>UiPath.Word</x:String>
       <x:String>UiPath.Shared.Activities.Business</x:String>
       <x:String>UiPath.Word.Activities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -100,9 +104,11 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Generates a PDF for a specific tour using a Word template, dynamically replacing placeholders with data.&#xA;" DisplayName="GeneratePDF" sap:VirtualizedContainerService.HintSize="1060.6666666666667,3450" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Generates a PDF for a specific tour using a Word template, dynamically replacing placeholders with data.&#xA;" DisplayName="GeneratePDF" sap:VirtualizedContainerService.HintSize="842.6666666666666,3954.8571428571427" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="FilteredTourData" />
       <Variable x:TypeArguments="x:String" Name="CustomerRows">
@@ -114,6 +120,7 @@
       <Variable x:TypeArguments="x:String" Name="FormattedStartDate" />
       <Variable x:TypeArguments="x:String" Name="FormattedEndDate" />
       <Variable x:TypeArguments="sd:DataTable" Name="RefinedTourData" />
+      <Variable x:TypeArguments="x:String" Name="newDocTemplateFilePath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -121,7 +128,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="502,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap:VirtualizedContainerService.HintSize="502.85714285714283,117.14285714285714" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[CustomerRows]</OutArgument>
       </Assign.To>
@@ -131,7 +138,7 @@
         </InArgument>
       </Assign.Value>
     </Assign>
-    <ui:FilterDataTable DataTable="[In_TourDataTable]" DisplayName="Filter Data Table - TourData by Tour ID" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="502,196" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[FilteredTourData]" SelectColumnsMode="Remove">
+    <ui:FilterDataTable DataTable="[In_TourDataTable]" DisplayName="Filter Data Table - TourData by Tour ID" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="502.85714285714283,197.71428571428572" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[FilteredTourData]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
@@ -150,8 +157,8 @@
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
     </ui:FilterDataTable>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="502,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Filtered data with Tour ID: &quot; + In_TourID + &quot;. Found: &quot; + FilteredTourData.Rows.Count.ToString+&quot; rows.&quot;]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="502,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="502.85714285714283,177.71428571428572" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Filtered data with Tour ID: &quot; + In_TourID + &quot;. Found: &quot; + FilteredTourData.Rows.Count.ToString+&quot; rows.&quot;]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="502.85714285714283,181.14285714285714" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
@@ -173,27 +180,27 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:BuildDataTable sap2010:Annotation.AnnotationText="Create a new DataTable to include only the required columns for PDF generation.&#xA;" DataTable="[RefinedTourData]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="502,154" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;No&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Full_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Gender&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Room_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Room_x0020_Group&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact_x0020_No&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Passport_x0020_No&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Passport_x0020_Expiry_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0020_Of_x0020_Birth&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+    <ui:BuildDataTable sap2010:Annotation.AnnotationText="Create a new DataTable to include only the required columns for PDF generation.&#xA;" DataTable="[RefinedTourData]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="502.85714285714283,155.42857142857142" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;No&quot; msdata:Caption=&quot;&quot; type=&quot;xs:int&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Full_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Gender&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Room_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Room_x0020_Group&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact_x0020_No&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Passport_x0020_No&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Passport_x0020_Expiry_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0020_Of_x0020_Birth&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BuildDataTable>
-    <ui:ForEachRow ColumnNames="{x:Null}" sap2010:Annotation.AnnotationText="Iterate through the filtered tour data to populate customer rows dynamically in the Word table.&#xA;" CurrentIndex="[CurrentRowIndex]" DataTable="[FilteredTourData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="502,696.6666666666666" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" sap2010:Annotation.AnnotationText="Iterate through the filtered tour data to populate customer rows dynamically in the Word table.&#xA;" CurrentIndex="[CurrentRowIndex]" DataTable="[FilteredTourData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="502.85714285714283,701.7142857142857" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,450.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,453.7142857142857" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xA;  (CurrentRowIndex + 1).ToString, &#xA;  CurrentRow(&quot;Full Name&quot;).ToString,&#xA;  CurrentRow(&quot;Gender&quot;).ToString,&#xA;  CurrentRow(&quot;Room Type&quot;).ToString,&#xA;  CurrentRow(&quot;Rooming Group&quot;).ToString,&#xA;  CurrentRow(&quot;Contact No&quot;).ToString,&#xA;  CurrentRow(&quot;Passport No&quot;).ToString,&#xA;  DateTime.Parse(CurrentRow(&quot;Passport Expiry Date&quot;).ToString).ToString(&quot;yyyy-MM-dd&quot;).ToString,&#xA;  DateTime.Parse(CurrentRow(&quot;Date of Birth&quot;).ToString).ToString(&quot;yyyy-MM-dd&quot;).ToString&#xA;}]" DataTable="[RefinedTourData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="382,223.33333333333334" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Customer processed: &quot; + CurrentRow(&quot;Full Name&quot;).ToString+&quot; Date value: &quot;+DateTime.Parse(FilteredTourData.Rows(0)(&quot;Tour Start Date&quot;).ToString).ToString(&quot;dd-MMM-yyyy&quot;)]" />
+            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xA;  (CurrentRowIndex + 1).ToString, &#xA;  CurrentRow(&quot;Full Name&quot;).ToString,&#xA;  CurrentRow(&quot;Gender&quot;).ToString,&#xA;  CurrentRow(&quot;Room Type&quot;).ToString,&#xA;  CurrentRow(&quot;Rooming Group&quot;).ToString,&#xA;  CurrentRow(&quot;Contact No&quot;).ToString,&#xA;  CurrentRow(&quot;Passport No&quot;).ToString,&#xA;  DateTime.Parse(CurrentRow(&quot;Passport Expiry Date&quot;).ToString).ToString(&quot;yyyy-MM-dd&quot;).ToString,&#xA;  DateTime.Parse(CurrentRow(&quot;Date of Birth&quot;).ToString).ToString(&quot;yyyy-MM-dd&quot;).ToString&#xA;}]" DataTable="[RefinedTourData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="381.7142857142857,225.14285714285714" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="381.7142857142857,168.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Customer processed: &quot; + CurrentRow(&quot;Full Name&quot;).ToString+&quot; Date value: &quot;+DateTime.Parse(FilteredTourData.Rows(0)(&quot;Tour Start Date&quot;).ToString).ToString(&quot;dd-MMM-yyyy&quot;)]" />
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
@@ -203,13 +210,29 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <p:WordApplicationScope SensitivityLabel="{x:Null}" sap2010:Annotation.AnnotationText="Open the Word template for editing and placeholder replacement.&#xA;" DisplayName="Word Application Scope" FilePath="[In_TemplateFilePath]" sap:VirtualizedContainerService.HintSize="502,1861.3333333333333" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
+    <Sequence DisplayName="Duplicate template file and rename" sap:VirtualizedContainerService.HintSize="502.85714285714283,393.14285714285717" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="434.2857142857143,117.14285714285714" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[newDocTemplateFilePath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[In_TemplateFilePath.replace("PdfTemplate","pdfTemplateProcessed")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:CopyFile ContinueOnError="{x:Null}" Destination="[newDocTemplateFilePath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="434.2857142857143,184" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[In_TemplateFilePath]" />
+    </Sequence>
+    <p:WordApplicationScope SensitivityLabel="{x:Null}" sap2010:Annotation.AnnotationText="Open the Word template for editing and placeholder replacement.&#xA;" DisplayName="Word Application Scope" FilePath="[newDocTemplateFilePath]" sap:VirtualizedContainerService.HintSize="502.85714285714283,1961.7142857142858" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
       <p:WordApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WordDocument">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
           </ActivityAction.Argument>
-          <Sequence sap2010:Annotation.AnnotationText="Replace all the placeholder with the table value.&#xA;" DisplayName="Do" sap:VirtualizedContainerService.HintSize="468,1683.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence sap2010:Annotation.AnnotationText="Replace all the placeholder with the table value.&#xA;" DisplayName="Do" sap:VirtualizedContainerService.HintSize="468.57142857142856,1782.2857142857142" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="In_TemplateFilePath" />
             </Sequence.Variables>
@@ -219,7 +242,7 @@
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434,202" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[FilteredTourData.Rows(0)(&quot;Tour Name&quot;).ToString]" ReplaceAll="True" Search="{}{{TourName}}">
+            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434.2857142857143,203.42857142857142" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[FilteredTourData.Rows(0)(&quot;Tour Name&quot;).ToString]" ReplaceAll="True" Search="{}{{TourName}}">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -227,7 +250,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </p:WordReplaceText>
-            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434,202" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[FormattedStartDate]" ReplaceAll="True" Search="{}{{StartDate}}">
+            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434.2857142857143,203.42857142857142" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[FormattedStartDate]" ReplaceAll="True" Search="{}{{StartDate}}">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -235,7 +258,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </p:WordReplaceText>
-            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434,202" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[FormattedEndDate]" ReplaceAll="True" Search="{}{{EndDate}}">
+            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434.2857142857143,203.42857142857142" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[FormattedEndDate]" ReplaceAll="True" Search="{}{{EndDate}}">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -243,7 +266,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </p:WordReplaceText>
-            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434,202" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[FilteredTourData.Rows(0)(&quot;Country&quot;).ToString]" ReplaceAll="True" Search="{}{{Country}}">
+            <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434.2857142857143,203.42857142857142" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[FilteredTourData.Rows(0)(&quot;Country&quot;).ToString]" ReplaceAll="True" Search="{}{{Country}}">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -251,9 +274,8 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </p:WordReplaceText>
-            <p:WordInsertDataTable Bookmark="{x:Null}" OccurrenceIndex="{x:Null}" DataTable="[RefinedTourData]" DisplayName="Insert DataTable in Document" sap:VirtualizedContainerService.HintSize="434,338" sap2010:WorkflowViewState.IdRef="WordInsertDataTable_1" InsertRelativeTo="Text" Occurrence="First" Position="Replace" Text="{}{{CustomerTable}}" />
-            <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[In_OutputFolderPath + &quot;\&quot; + In_TourID + &quot;_&quot; +DateTime.Parse(FilteredTourData.Rows(0)(&quot;Tour Start Date&quot;).ToString).ToString(&quot;yyyy-MM-dd&quot;)+ &quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="434,147.33333333333334" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
-            <Assign sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <p:WordInsertDataTable Bookmark="{x:Null}" OccurrenceIndex="{x:Null}" DataTable="[RefinedTourData]" DisplayName="Insert DataTable in Document" sap:VirtualizedContainerService.HintSize="434.2857142857143,342.2857142857143" sap2010:WorkflowViewState.IdRef="WordInsertDataTable_1" InsertRelativeTo="Text" Occurrence="First" Position="Replace" Text="{}{{CustomerTable}}" />
+            <Assign sap:VirtualizedContainerService.HintSize="434.2857142857143,117.14285714285714" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[Out_PdfFilePath]</OutArgument>
               </Assign.To>
@@ -261,7 +283,26 @@
                 <InArgument x:TypeArguments="x:String">[In_OutputFolderPath + "\" + In_TourID + "_" +DateTime.Parse(FilteredTourData.Rows(0)("Tour Start Date").ToString).ToString("yyyy-MM-dd")+ ".pdf"]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;PDF successfully generated for Tour ID: &quot; + In_TourID]" />
+            <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[Out_PdfFilePath]" sap:VirtualizedContainerService.HintSize="434.2857142857143,148" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434.2857142857143,86.28571428571429" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450.2857142857143,165.14285714285714" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="416,105.14285714285714" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[newDocTemplateFilePath]" />
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434.2857142857143,168.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;PDF successfully generated for Tour ID: &quot; + In_TourID]" />
           </Sequence>
         </ActivityAction>
       </p:WordApplicationScope.Body>

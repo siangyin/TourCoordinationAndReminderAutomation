@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="kpLS6Zvba0qN6D2cXbi8Tg" Reference="iglOE0M3hUiQYwNrzt76vQ/fdtiuuU01U6DV1E79xa2TQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="web.whatsapp.com" CVScreenId="e6c125da-c6bf-4de4-b2e7-118a53d28d6d" CvElementArea="1075, 1635, 1536, 83" CvType="InputBox" DesignTimeRectangle="1163, 1658, 1418, 38" DesignTimeScaleFactor="1.75" FullSelectorArgument="&lt;webctrl parentid='main' tag='P' /&gt;" Guid="0edd5c1c-3f8a-4735-a60a-49948f710bd5" ScopeSelectorArgument="&lt;html app='chrome.exe' title='WhatsApp' /&gt;" SearchSteps="Selector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="717caa51776af53e15853e1432424205.png" xmlns="">0AF4lJ4pX-k6f3OKWiuw8oQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

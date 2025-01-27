@@ -1,0 +1,12 @@
+﻿{
+  "Name": "Chrome Share on WhatsApp",
+  "Type": "App",
+  "Id": "zMlxEYeQs0-ndU1UcDo_Iw",
+  "Reference": "iglOE0M3hUiQYwNrzt76vQ/zMlxEYeQs0-ndU1UcDo_Iw",
+  "Created": "2025-01-27T17:52:16.2079741Z",
+  "Updated": "2025-01-27T17:52:16.2079741Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=24.12.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=24.12.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

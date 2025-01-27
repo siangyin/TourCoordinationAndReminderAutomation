@@ -99,9 +99,10 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="LoadCustomerAndTourData" sap:VirtualizedContainerService.HintSize="1166.2,1666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="LoadCustomerAndTourData" sap:VirtualizedContainerService.HintSize="842.6666666666666,1707.4285714285713" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="C:\Users\lee16\Downloads\customer.xlsx" Name="CustomerFilePath" />
       <Variable x:TypeArguments="x:String" Default="C:\Users\lee16\Downloads\tour.xlsx" Name="TourFilePath" />
@@ -115,16 +116,16 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap2010:Annotation.AnnotationText="Check if both Customer and Tour files exist before proceeding to load data.&#xA;" DisplayName="Sequence - FilePaths checking" sap:VirtualizedContainerService.HintSize="468,533" sap2010:WorkflowViewState.IdRef="Sequence_10">
+    <Sequence sap2010:Annotation.AnnotationText="Check if both Customer and Tour files exist before proceeding to load data.&#xA;" DisplayName="Sequence - FilePaths checking" sap:VirtualizedContainerService.HintSize="468.57142857142856,550.2857142857143" sap2010:WorkflowViewState.IdRef="Sequence_10">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:PathExists Resource="{x:Null}" DisplayName="Path Exists - Customer" Exists="[hasCustomerFile]" sap:VirtualizedContainerService.HintSize="434,147" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[CustomerFilePath]" PathType="File" />
-      <ui:PathExists Resource="{x:Null}" DisplayName="Path Exists - Tour" Exists="[hasTourFile]" sap:VirtualizedContainerService.HintSize="434,147" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[TourFilePath]" PathType="File" />
-      <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <ui:PathExists Resource="{x:Null}" DisplayName="Path Exists - Customer" Exists="[hasCustomerFile]" sap:VirtualizedContainerService.HintSize="434.2857142857143,152" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[CustomerFilePath]" PathType="File" />
+      <ui:PathExists Resource="{x:Null}" DisplayName="Path Exists - Tour" Exists="[hasTourFile]" sap:VirtualizedContainerService.HintSize="434.2857142857143,152" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[TourFilePath]" PathType="File" />
+      <Assign sap:VirtualizedContainerService.HintSize="434.2857142857143,108" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="x:Boolean">[Out_FilesExist]</OutArgument>
         </Assign.To>
@@ -133,49 +134,45 @@
         </Assign.Value>
       </Assign>
     </Sequence>
-    <If sap2010:Annotation.AnnotationText="If both files exist, proceed to load datasets. Otherwise, terminate the workflow and log an error.&#xA;" Condition="[Out_FilesExist]" DisplayName="If - Datasets exist" sap:VirtualizedContainerService.HintSize="468,1110" sap2010:WorkflowViewState.IdRef="If_3">
+    <If sap2010:Annotation.AnnotationText="If both files exist, proceed to load datasets. Otherwise, terminate the workflow and log an error.&#xA;" Condition="[Out_FilesExist]" DisplayName="If - Datasets exist" sap:VirtualizedContainerService.HintSize="468.57142857142856,1134.2857142857142" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,578" sap2010:WorkflowViewState.IdRef="Sequence_8">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="sd:DataTable" Name="Out_CustomersDataTable" />
-            <Variable x:TypeArguments="sd:DataTable" Name="Out_ToursDataTable" />
-          </Sequence.Variables>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,586.2857142857143" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ReadExcelFile - Invoke Workflow File (ReadExcelFile.xaml)" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ReadExcelFile.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ReadExcelFile - Invoke Workflow File (ReadExcelFile.xaml)" sap:VirtualizedContainerService.HintSize="381.7142857142857,178.85714285714286" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ReadExcelFile.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="In_FilePath">[CustomerFilePath]</InArgument>
               <OutArgument x:TypeArguments="sd:DataTable" x:Key="Out_TableData">[Out_CustomersDataTable]</OutArgument>
               <InArgument x:TypeArguments="x:String" x:Key="In_SheetName">[CustomerSheetName]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ReadExcelFile - Invoke Workflow File (ReadExcelFile.xaml)" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ReadExcelFile.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ReadExcelFile - Invoke Workflow File (ReadExcelFile.xaml)" sap:VirtualizedContainerService.HintSize="381.7142857142857,178.85714285714286" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ReadExcelFile.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="In_FilePath">[TourFilePath]</InArgument>
               <OutArgument x:TypeArguments="sd:DataTable" x:Key="Out_TableData">[Out_ToursDataTable]</OutArgument>
               <InArgument x:TypeArguments="x:String" x:Key="In_SheetName">[TourSheetName]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Customer and Tour datasets loaded successfully. (Customers: &quot; + Out_CustomersDataTable.Rows.Count.ToString + &quot; rows , Tours: &quot; + Out_ToursDataTable.Rows.Count.ToString+ &quot; rows.)&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="381.7142857142857,168.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Customer and Tour datasets loaded successfully. (Customers: &quot; + Out_CustomersDataTable.Rows.Count.ToString + &quot; rows , Tours: &quot; + out_ToursDataTable.Rows.Count.ToString+ &quot; rows.)&quot;]" />
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,346" sap2010:WorkflowViewState.IdRef="Sequence_9">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,353.14285714285717" sap2010:WorkflowViewState.IdRef="Sequence_9">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;One or both Excel files are missing. Customers File: &quot; + CustomerFilePath + &quot;, Tours File: &quot; + TourFilePath]" />
-          <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="Required Excel files are missing." />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="381.7142857142857,177.71428571428572" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;One or both Excel files are missing. Customers File: &quot; + CustomerFilePath + &quot;, Tours File: &quot; + TourFilePath]" />
+          <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="381.7142857142857,115.42857142857143" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="Required Excel files are missing." />
         </Sequence>
       </If.Else>
     </If>

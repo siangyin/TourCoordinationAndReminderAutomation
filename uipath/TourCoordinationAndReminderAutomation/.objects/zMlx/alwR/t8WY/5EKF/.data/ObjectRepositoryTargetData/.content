@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="Lr4DgsRksUScLfseZyiaIQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="api.whatsapp.com/send" CVScreenId="f8d91181-982e-4440-9604-a42ed573ab07" CvElementArea="1201, 561, 329, 100" CvTextArea="1258, 596, 214, 26" CvTextArgument="Continue to Chat" CvType="Button" DesignTimeRectangle="1205, 567, 322, 89" DesignTimeScaleFactor="1.75" ElementType="Text" FuzzySelectorArgument="&lt;webctrl id='action-button' tag='A' type='' class='_9vcv _advm _9scb' aaname='Continue to Chat' check:innerText='Continue to Chat' /&gt;" Guid="0471bbb1-f0f1-4252-bb8e-ab378fc13dd3" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Share on WhatsApp' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="c9e7ab0f3f21a2407c7a788f9952110f.png" xmlns="">0WJ8aWIrQTUmfj2JLlReaJQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>
