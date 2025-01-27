@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="0b826JUtPEWTioXzGcQAoA" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="api.whatsapp.com/send" CVScreenId="23981c35-ec66-4503-819a-fbbe5c315d25" CvTextArea="1224, 715, 280, 28" CvTextArgument="use WhatsApp Web" CvType="Text" DesignTimeRectangle="1227, 713, 278, 36" DesignTimeScaleFactor="1.75" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='use WhatsApp Web' parentid='fallback_block' tag='SPAN' type='' class='_advp _aeam' check:innerText='use WhatsApp Web' /&gt;" Guid="8b81214d-a299-4491-9b38-e81b35eb6b6f" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Share on WhatsApp' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="3885c9cb6d311c59134786a8adfab505.png" xmlns="">0AK1AlpWmDEWRqsRBogZrtw</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

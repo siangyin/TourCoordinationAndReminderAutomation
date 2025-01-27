@@ -99,9 +99,11 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Filters rows in a DataTable based on a column name and value. Handles cases like missing column and no matching rows." DisplayName="FilterDataTable" sap:VirtualizedContainerService.HintSize="1084,2498.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Filters rows in a DataTable based on a column name and value. Handles cases like missing column and no matching rows." DisplayName="FilterDataTable" sap:VirtualizedContainerService.HintSize="844.5714285714286,2454.285714285714" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="Out_FilteredDataTable">
         <sap:WorkflowViewStateService.ViewState>
@@ -118,19 +120,19 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="526,2445.3333333333335" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="528,2400.5714285714284" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Variables>
         <Variable x:TypeArguments="scg:IEnumerable(sd:DataRow)" Name="FilteredRows" />
       </TryCatch.Variables>
       <TryCatch.Try>
-        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="524,1968.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="525.7142857142857,1981.7142857142858" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:BuildDataTable DataTable="[Out_FilteredDataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="490,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Column1&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Column2&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;Column1&gt;text&lt;/Column1&gt;&#xA;    &lt;Column2&gt;1&lt;/Column2&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
-          <Assign sap2010:Annotation.AnnotationText="Clone the structure of the input DataTable for the filtered output.&#xA;" DisplayName="Assign - Clone In_DataTable structure" sap:VirtualizedContainerService.HintSize="490,162.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <ui:BuildDataTable DataTable="[Out_FilteredDataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="491.42857142857144,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Column1&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Column2&quot; type=&quot;xs:int&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;Column1&gt;text&lt;/Column1&gt;&#xA;    &lt;Column2&gt;1&lt;/Column2&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+          <Assign sap2010:Annotation.AnnotationText="Clone the structure of the input DataTable for the filtered output.&#xA;" DisplayName="Assign - Clone In_DataTable structure" sap:VirtualizedContainerService.HintSize="491.42857142857144,163.42857142857142" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[Out_FilteredDataTable]</OutArgument>
             </Assign.To>
@@ -143,7 +145,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </Assign>
-          <If sap2010:Annotation.AnnotationText="Check if the column exists in the input DataTable. If not, log error message to indicate the issue.&#xA;" Condition="[Not In_DataTable.Columns.Contains(In_ColumnName)]" DisplayName="If - Column not exist In_DataTable" sap:VirtualizedContainerService.HintSize="490,1654" sap2010:WorkflowViewState.IdRef="If_1">
+          <If sap2010:Annotation.AnnotationText="Check if the column exists in the input DataTable. If not, log error message to indicate the issue.&#xA;" Condition="[Not In_DataTable.Columns.Contains(In_ColumnName)]" DisplayName="If - Column not exist In_DataTable" sap:VirtualizedContainerService.HintSize="491.42857142857144,1666.2857142857142" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -152,24 +154,24 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="488,227.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="489.14285714285717,228.57142857142858" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="454,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;The column '&quot; + In_ColumnName + &quot;' does not exist in the DataTable: &quot; + If(String.IsNullOrEmpty(In_DataTable.TableName), &quot;[Unnamed Table]&quot;, In_DataTable.TableName)]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="454.85714285714283,168.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;The column '&quot; + In_ColumnName + &quot;' does not exist in the DataTable: &quot; + If(String.IsNullOrEmpty(In_DataTable.TableName), &quot;[Unnamed Table]&quot;, In_DataTable.TableName)]" />
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="488,1234" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="489.14285714285717,1242.857142857143" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign sap2010:Annotation.AnnotationText="Use LINQ to filter rows matching the column name and value.&#xD;&#xA;" DisplayName="Assign - FilteredRows" sap:VirtualizedContainerService.HintSize="454,163.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_2">
+                <Assign sap2010:Annotation.AnnotationText="Use LINQ to filter rows matching the column name and value.&#xA;" DisplayName="Assign - FilteredRows" sap:VirtualizedContainerService.HintSize="454.85714285714283,164" sap2010:WorkflowViewState.IdRef="Assign_2">
                   <Assign.To>
                     <OutArgument x:TypeArguments="scg:IEnumerable(sd:DataRow)">[FilteredRows]</OutArgument>
                   </Assign.To>
@@ -184,7 +186,7 @@ Select row]</InArgument>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </Assign>
-                <If sap2010:Annotation.AnnotationText="Check if rows matching the criteria exist. If rows are found, process them; otherwise, log a message.&#xD;&#xA;" Condition="[FilteredRows.Any()]" DisplayName="If - Rows Are Found" sap:VirtualizedContainerService.HintSize="454,1010.6666666666666" sap2010:WorkflowViewState.IdRef="If_2">
+                <If sap2010:Annotation.AnnotationText="Check if rows matching the criteria exist. If rows are found, process them; otherwise, log a message.&#xA;" Condition="[FilteredRows.Any()]" DisplayName="If - Rows Are Found" sap:VirtualizedContainerService.HintSize="454.85714285714283,1018.8571428571429" sap2010:WorkflowViewState.IdRef="If_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -193,26 +195,26 @@ Select row]</InArgument>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="452,792.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="452.57142857142856,798.8571428571429" sap2010:WorkflowViewState.IdRef="Sequence_7">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop through the filtered DataTable to process each row and add it to the output DataTable.&#xD;&#xA;" DataTable="[FilteredRows.CopyToDataTable()]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="418,565.3333333333334" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop through the filtered DataTable to process each row and add it to the output DataTable.&#xA;" DataTable="[FilteredRows.CopyToDataTable()]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="418.2857142857143,570.2857142857143" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                         <ui:ForEachRow.Body>
                           <ActivityAction x:TypeArguments="sd:DataRow">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                             </ActivityAction.Argument>
-                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,319.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,322.2857142857143" sap2010:WorkflowViewState.IdRef="Sequence_9">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Add the current row's data to the output DataTable.&#xD;&#xA;" ArrayRow="[CurrentRow.ItemArray]" DataTable="[Out_FilteredDataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="382,259.3333333333333" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+                              <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Add the current row's data to the output DataTable.&#xA;" ArrayRow="[CurrentRow.ItemArray]" DataTable="[Out_FilteredDataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="381.7142857142857,262.2857142857143" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -230,7 +232,7 @@ Select row]</InArgument>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:ForEachRow>
-                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;New Filtered DataTable created (&quot; + Out_FilteredDataTable.Rows.Count.ToString + &quot; rows) from &quot; + If(String.IsNullOrEmpty(In_DataTable.TableName), &quot;[Unnamed Table]&quot;, In_DataTable.TableName)+&quot; DataTable.&quot;]">
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418.2857142857143,168.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;New Filtered DataTable created (&quot; + Out_FilteredDataTable.Rows.Count.ToString + &quot; rows) from &quot; + If(String.IsNullOrEmpty(In_DataTable.TableName), &quot;[Unnamed Table]&quot;, In_DataTable.TableName)+&quot; DataTable.&quot;]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -241,7 +243,7 @@ Select row]</InArgument>
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="452,25.333333333333332" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="452.57142857142856,25.142857142857142" sap2010:WorkflowViewState.IdRef="Sequence_8">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -270,20 +272,20 @@ Select row]</InArgument>
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="524,227.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="525.7142857142857,228.57142857142858" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="490,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Error" Message="[&quot;Error occurred while filtering DataTable: &quot; + exception.Message]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="491.42857142857144,168.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Fatal" Message="[&quot;Error occurred while filtering DataTable: &quot; + exception.Message]" />
             </Sequence>
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
       <TryCatch.Finally>
-        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="524,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="525.7142857142857,25.142857142857142" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>

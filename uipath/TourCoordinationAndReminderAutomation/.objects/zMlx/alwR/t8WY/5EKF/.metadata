@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Continue to Chat",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Id": "5EKFFe6fPk6g-9mDaB5Ihw",
+  "Reference": "iglOE0M3hUiQYwNrzt76vQ/5EKFFe6fPk6g-9mDaB5Ihw",
+  "ParentRef": "iglOE0M3hUiQYwNrzt76vQ/t8WYGQ5fkUS4xccSgQX8uA",
+  "Created": "2025-01-27T17:54:53.9714541Z",
+  "Updated": "2025-01-27T17:54:53.9714541Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=24.12.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=24.12.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}
