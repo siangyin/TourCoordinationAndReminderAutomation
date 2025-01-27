@@ -90,15 +90,17 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GeneratePDFandEmail" sap:VirtualizedContainerService.HintSize="880.2,718" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GeneratePDFandEmail" sap:VirtualizedContainerService.HintSize="1084,726.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="C:\Users\lee16\Downloads\pdf" Name="OutputFolder" />
       <Variable x:TypeArguments="x:Int32" Name="CurrentTourIndex" />
       <Variable x:TypeArguments="x:String" Name="PdfTemplateFilePath">
         <Variable.Default>
-          <Literal x:TypeArguments="x:String">C:\Users\lee16\Downloads\PdfTemplate.dotx</Literal>
+          <Literal x:TypeArguments="x:String">C:\Users\lee16\Documents\Custom Office Templates\PdfTemplate.dotx</Literal>
         </Variable.Default>
       </Variable>
     </Sequence.Variables>
@@ -107,13 +109,13 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[CurrentTourIndex]" DisplayName="For Each CurrentTourID" sap:VirtualizedContainerService.HintSize="418,531" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[In_TourIDs]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[CurrentTourIndex]" DisplayName="For Each CurrentTourID" sap:VirtualizedContainerService.HintSize="418,536.6666666666666" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[In_TourIDs]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="CurrentTourID" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="For Each Tour Body" sap:VirtualizedContainerService.HintSize="416,401" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="For Each Tour Body" sap:VirtualizedContainerService.HintSize="416,404.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="PdfFilePath">
                 <Variable.Default>
@@ -126,7 +128,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GeneratePDF - Invoke Workflow File (GeneratePDF.xaml)" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GeneratePDF.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GeneratePDF - Invoke Workflow File (GeneratePDF.xaml)" sap:VirtualizedContainerService.HintSize="382,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GeneratePDF.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="sd:DataTable" x:Key="In_TourDataTable">[In_TourListDataTable]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="In_TourID">[CurrentTourID]</InArgument>
@@ -135,11 +137,11 @@
                 <InArgument x:TypeArguments="x:String" x:Key="Out_PdfFilePath">[PdfFilePath]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;PDF generated for Tour ID: &quot; + CurrentTourID]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;PDF generated for Tour ID: &quot; + CurrentTourID]" />
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;PdfAndEmail workflow completed. PDFs generated for all Tour IDs.&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="418,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;PdfAndEmail workflow completed. PDFs generated for all Tour IDs.&quot;]" />
   </Sequence>
 </Activity>

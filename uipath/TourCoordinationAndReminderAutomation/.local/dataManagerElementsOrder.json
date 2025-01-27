@@ -47,17 +47,11 @@
         "CustomerData&Sequence_1",
         "CurrBookingRow&Sequence_7",
         "MergedRow&Sequence_7",
-        "FoundCustomerRow&Sequence_4",
-        "CurrBookingRow&Sequence_4",
-        "FoundCustomerDT&Sequence_4",
-        "TourIds&Sequence_1",
-        "GroupedTours&Sequence_1"
+        "FoundCustomerDT&Sequence_4"
       ],
       "ArgumentsSectionElementsOrder": [
         "Out_TourIDs",
         "Out_TourListDataTable",
-        "In_CustomersData",
-        "Out_TourDataTable",
         "In_BookingByStartDate"
       ],
       "ConstantsSectionElementsOrder": [],
@@ -97,6 +91,41 @@
       "ArgumentsSectionElementsOrder": [
         "In_TourListDataTable",
         "In_TourIDs"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "FilterBookingByStartDate.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "BookingFilePath&Sequence_1",
+        "BookingSheetName&Sequence_1",
+        "BookingData&Sequence_1",
+        "ExcelDateColumnHeader&Sequence_1",
+        "FilteredBookings&Sequence_7",
+        "CurrentRowIndex&Sequence_7",
+        "SplitDateArray&Sequence_11"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "In_TourStartDate",
+        "Out_FilteredBookings"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "FilterDataTable.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Out_FilteredDataTable&Sequence_1",
+        "FilteredRows&TryCatch_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "In_DataTable",
+        "In_ColumnName",
+        "In_ColumnValue",
+        "Out_FilteredDataTable"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

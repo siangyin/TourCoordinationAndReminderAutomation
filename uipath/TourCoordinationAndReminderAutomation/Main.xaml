@@ -98,13 +98,13 @@
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="880.2,671" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1175.857142857143,671" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Flowchart sap:VirtualizedContainerService.HintSize="897,428.424" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart sap:VirtualizedContainerService.HintSize="600,648" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <Flowchart.Variables>
         <Variable x:TypeArguments="s:DateTime" Name="ValidatedTourStartDate" />
         <Variable x:TypeArguments="sd:DataTable" Name="FilteredBookings" />
