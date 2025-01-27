@@ -100,9 +100,10 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetExcelTableData" sap:VirtualizedContainerService.HintSize="1166.2,1533" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetExcelTableData" sap:VirtualizedContainerService.HintSize="842.6666666666666,1751.4285714285713" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="FileExist" />
       <Variable x:TypeArguments="sd:DataTable" Name="TableData" />
@@ -112,41 +113,41 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:PathExists Resource="{x:Null}" DisplayName="Path Exists" Exists="[FileExist]" sap:VirtualizedContainerService.HintSize="616,147" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[In_FilePath]" PathType="File" />
-    <If Condition="[FileExist]" sap:VirtualizedContainerService.HintSize="616,1363" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:PathExists Resource="{x:Null}" DisplayName="Path Exists" Exists="[FileExist]" sap:VirtualizedContainerService.HintSize="618.2857142857143,152" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[In_FilePath]" PathType="File" />
+    <If Condition="[FileExist]" sap:VirtualizedContainerService.HintSize="618.2857142857143,1576.5714285714287" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="614,888" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="616,1092" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="580,828" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+          <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="581.7142857142857,1032" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
             <ueab:ExcelProcessScopeX.Body>
               <ActivityAction x:TypeArguments="ui:IExcelProcess">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="546,718" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="547.4285714285714,921.7142857142857" sap2010:WorkflowViewState.IdRef="Sequence_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="512,658" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" SensitivityOperation="None" WorkbookPath="[In_FilePath]">
+                  <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" SensitivityLabel="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="513.1428571428571,861.7142857142857" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" SensitivityOperation="None" WorkbookPath="[In_FilePath]">
                     <ueab:ExcelApplicationCard.Body>
                       <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478,366" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="478.85714285714283,554.2857142857143" sap2010:WorkflowViewState.IdRef="Sequence_3">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="444,201" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(In_SheetName)]" SaveTo="[TableData]">
+                          <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="444.57142857142856,208.57142857142858" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(In_SheetName)]" SaveTo="[TableData]">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -154,7 +155,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ueab:ReadRangeX>
-                          <Assign sap:VirtualizedContainerService.HintSize="444,105" sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign sap:VirtualizedContainerService.HintSize="444.57142857142856,117.14285714285714" sap2010:WorkflowViewState.IdRef="Assign_1">
                             <Assign.To>
                               <OutArgument x:TypeArguments="sd:DataTable">[Out_TableData]</OutArgument>
                             </Assign.To>
@@ -162,6 +163,7 @@
                               <InArgument x:TypeArguments="sd:DataTable">[TableData]</InArgument>
                             </Assign.Value>
                           </Assign>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="444.57142857142856,168.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;File is found &quot; + In_FilePath]" />
                         </Sequence>
                       </ActivityAction>
                     </ueab:ExcelApplicationCard.Body>
@@ -173,14 +175,14 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="614,346" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="616,353.14285714285717" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="580,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;File not found: &quot; + In_FilePath]" />
-          <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="580,113" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="[&quot;File not found: &quot; + In_FilePath+&quot;. Workflow terminated.&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="581.7142857142857,177.71428571428572" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;File not found: &quot; + In_FilePath]" />
+          <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="581.7142857142857,115.42857142857143" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="[&quot;File not found: &quot; + In_FilePath+&quot;. Workflow terminated.&quot;]" />
         </Sequence>
       </If.Else>
     </If>

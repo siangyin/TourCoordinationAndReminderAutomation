@@ -6,18 +6,6 @@
   "OriginalIconFileName": null,
   "Arguments": [
     {
-      "Name": "In_TourListData",
-      "DisplayName": "In_TourListData",
-      "Category": null,
-      "Tooltip": null,
-      "Placeholder": null,
-      "Widget": null,
-      "IsRequired": false,
-      "IsPrincipal": true,
-      "ArgumentType": 0,
-      "DataSourceItems": null
-    },
-    {
       "Name": "In_TourIDs",
       "DisplayName": "In_TourIDs",
       "Category": null,
